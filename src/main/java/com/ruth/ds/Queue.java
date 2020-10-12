@@ -2,50 +2,45 @@ package com.ruth.ds;
 
 import com.ruth.ds.exception.QueueOverFlowException;
 import com.ruth.ds.exception.QueueUnderFlowException;
-import com.ruth.ds.exception.StackOverFlowException;
-import com.ruth.ds.exception.StackUnderFlowException;
 
 /**
- * Applications :
- * 1. Reverse a word
- * 2. Undo operations (Ctrl + Z)
- * 3. Language processing
- * 4. Stack of plates/books
- * 5. Wearing/Removing bangles
- * 6. Recursion, Method calls
- * 7. Back button on browser,
- * 8. Match parenthesis in an expression
+ * 
+ * @author ishmayel
+ *
+ * @param <E>
  */
+
 public class Queue<E>{
-	Node<E> top;	
-	Node<E> end;
+	Node<E> top;		
+	Node<E> endNode;
 	int size;
 	int MAX_SIZE=100;
 	
-	public void enqueue(E nodeVal)throws QueueOverFlowException
-	{
+	public void enqueue(E nodeVal)throws QueueOverFlowException{
 		 if (size==MAX_SIZE)
-			 throw new StackOverFlowException("Stack is full");
+			 throw new QueueOverFlowException("Queue is full");
+		
 		 Node<E> node=new Node<E>(nodeVal);
 		 if(top == null) {	
-			 top =node;	
-		 	 end = node;
+			 top = node;	
+			 endNode = node;
 		 }
 		 else{			
-			 node.next= end;
-			 end=node;					 
+			 endNode.next= node;
+			 endNode=endNode.next;//which will points to Null				 
 		 }
 		 size++;
 	}
-	public E peek()throws StackUnderFlowException {
+	
+	public E peek()throws QueueUnderFlowException {
 		if(size==0)
-			throw new StackUnderFlowException("Queue is empty");
+			throw new QueueUnderFlowException("Queue is empty");
 		return top.nodeVal;
 	}
 	
 	public E dequeue()throws QueueUnderFlowException{
 		if(size==0 || top==null)
-			throw new StackUnderFlowException("Queue is empty");		
+			throw new QueueUnderFlowException("Queue is empty");		
 		
 		E element=top.nodeVal;
 		top=top.next;
@@ -58,15 +53,8 @@ public class Queue<E>{
 			return true;	
 		else
 			return false;
-	} 
+	} 	
 	
-	private void printQueueElements() {
-		Node temp =top;
-		while(temp!=null){
-		  System.out.print(" "+temp.nodeVal);
-		  temp=temp.next;
-		}
-	} 
 	
 	private class Node<E> {
 		E nodeVal;		

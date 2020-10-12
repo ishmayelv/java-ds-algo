@@ -15,17 +15,13 @@ public class QueueUnitTest {
 		queue.enqueue("2");
 		queue.enqueue("3");	
 		
-		assertEquals("3", queue.dequeue());
-		assertEquals("2", queue.dequeue());
 		assertEquals("1", queue.dequeue());
 		
-		queue.enqueue("love");
+		queue.enqueue("test");
 		queue.enqueue("java");
 		
-		assertEquals("java", queue.dequeue());
-		
-		
-		
+		assertEquals("2", queue.dequeue());
+		assertEquals("3", queue.peek());
 			
 		 
 		
