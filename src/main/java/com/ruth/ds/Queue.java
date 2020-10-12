@@ -1,5 +1,7 @@
 package com.ruth.ds;
 
+import com.ruth.ds.exception.QueueOverFlowException;
+import com.ruth.ds.exception.QueueUnderFlowException;
 import com.ruth.ds.exception.StackOverFlowException;
 import com.ruth.ds.exception.StackUnderFlowException;
 
@@ -14,38 +16,41 @@ import com.ruth.ds.exception.StackUnderFlowException;
  * 7. Back button on browser,
  * 8. Match parenthesis in an expression
  */
-public class Stack<E>{
+public class Queue<E>{
 	Node<E> top;	
+	Node<E> end;
 	int size;
 	int MAX_SIZE=100;
 	
-	public void push(E nodeVal)throws StackOverFlowException
+	public void enqueue(E nodeVal)throws QueueOverFlowException
 	{
 		 if (size==MAX_SIZE)
 			 throw new StackOverFlowException("Stack is full");
 		 Node<E> node=new Node<E>(nodeVal);
-		 if(top == null)	
-			 top =node;		
+		 if(top == null) {	
+			 top =node;	
+		 	 end = node;
+		 }
 		 else{			
-			 node.next= top;
-			 top=node;		
-			 size++;
+			 node.next= end;
+			 end=node;					 
 		 }
 		 size++;
 	}
 	public E peek()throws StackUnderFlowException {
 		if(size==0)
-			throw new StackUnderFlowException("Stack is empty");
+			throw new StackUnderFlowException("Queue is empty");
 		return top.nodeVal;
 	}
 	
-	public E pop()throws StackUnderFlowException{
-		if(size==0)
-			throw new StackUnderFlowException("Stack is empty");		
-		E str=top.nodeVal;
+	public E dequeue()throws QueueUnderFlowException{
+		if(size==0 || top==null)
+			throw new StackUnderFlowException("Queue is empty");		
+		
+		E element=top.nodeVal;
 		top=top.next;
 		size--;			 
-		return str;
+		return element;
 	}
 	
 	public boolean isEmpty(){
@@ -55,7 +60,7 @@ public class Stack<E>{
 			return false;
 	} 
 	
-	private void printStackElements() {
+	private void printQueueElements() {
 		Node temp =top;
 		while(temp!=null){
 		  System.out.print(" "+temp.nodeVal);
@@ -72,10 +77,6 @@ public class Stack<E>{
 		}		
 	} 
 	
-	
-	public void findMinimum() {
-		
-	}
 	
 	
 }
