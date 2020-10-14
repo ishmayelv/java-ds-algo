@@ -2,8 +2,8 @@ package com.ruth.ds.trees;
 
 /**
  * 
- * @author ishma
- *
+ * @author ishmayel
+ * 
  */
 public class BinaryTree {
 	private Node root;
@@ -31,7 +31,10 @@ public class BinaryTree {
 				 addNode(curNode.getRightNode(), element,newNode);
 		 } 
 	}
-	
+	/**
+	 * 
+	 * @param currentNode
+	 */
 	public void inOrdertraversal(Node currentNode) {
 		if(currentNode ==null)
 			return;		
@@ -79,7 +82,7 @@ public class BinaryTree {
 	 * Find a minimum element in a Binary Tree, 
 	 * assuming tree is a balanced binary tree
 	 * @param currNode - initially have to pass root node 
-	 * @return minimum element in a
+	 * @return minimum element in a binary tree
 	 */
 	public Integer findMinElementInBinaryTree( Node currNode) {
 		Integer element=0;
