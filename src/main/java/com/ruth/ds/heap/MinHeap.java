@@ -42,32 +42,7 @@ public class MinHeap{
 			siftup(parent);
 		}	 
 	}
-	private void siftDown(int currentPosition ) {
-		int targetPosition=-1;	 
-		int leftChild =getLeftChild(currentPosition);
-		int rightChild =getRightChild(currentPosition);
-		
-		if( leftChild!=-1 && rightChild!=-1) {
-			if(heap[leftChild] < heap[rightChild])
-				targetPosition=leftChild;
-			else
-				targetPosition=rightChild;
-		}
-		else if(leftChild==-1)  
-			targetPosition=rightChild;	 
-		else
-			targetPosition=leftChild;
-		
-		if(targetPosition!=-1)
-			return;
-		
-		if( heap[currentPosition] < heap[targetPosition]){  		
-			swap(currentPosition,targetPosition); 
-			siftDown(targetPosition);
-		}
-		
-		
-	}
+	
 	
 	private void swap(int sourcePos, int targetPos) {
 		if(sourcePos==-1 || targetPos==-1 || targetPos>=MAX_HEAP || sourcePos>=MAX_HEAP)
@@ -81,23 +56,9 @@ public class MinHeap{
 	  if(count>0)
 		  return heap[0];
 	  else
-		  return -1;
-	  
+		  return -1;	  
 	}
-	public int remove() {
-		int minElemment=-1;		
-		if(count<1)
-			throw new HeapUnderFlowException("");
-		
-		minElemment=heap[0];
-	    heap[0]=heap[count-1];
-	    heap[count-1]=0;
-	    count--;
-		if(count>1) {
-			siftDown(0);
-		} 
-		return minElemment; 
-	}
+
 	
 	/**
 	 * Find the elements right position: shit down/shiftup
@@ -119,23 +80,21 @@ public class MinHeap{
 	private int getLeftChild(int position) {
 		int leftChild = (2*position)+1 ;
 		if (leftChild>=count)
-			return -1;
-					
+			return -1;					
 		return leftChild ;
 	}
 	
-	/*
+	/**
 	 * Get the right child of parent at position passed
 	 */
 	private int getRightChild(int position){
 		int rightChild = (2*position)+2;
 		if (rightChild>=count)
-			return -1;
-		
+			return -1;		
 		return rightChild;
 	}
 	
-	/*
+	/**
 	 * Get the parent position for position of child passed
 	 */
 	private int getParent(int position){
@@ -144,15 +103,61 @@ public class MinHeap{
 		return (position-1)/2 ;
 	}
 	
-	private void print() {
+	private void print(){
 		 for(int i = 0; i < count / 2; i++) { 
 	          System.out.print(" PARENT : " + heap[i] 
 	                          + " LEFT CHILD : " + heap[(2 * i)+1] 
 	                          + " RIGHT CHILD :" + heap[(2 * i) + 2]); 
 	          System.out.println();
-	     } 
-		 
+	     } 		 
 	}
+	private void printHeap(){
+		 for(int ele:heap)
+	          System.out.print(ele+" "); 
+		 System.out.println();
+	}
+	
+	public int remove() {
+		int minElemment=-1;		
+		if(count<1)
+			throw new HeapUnderFlowException("");
+		
+		minElemment=heap[0];
+	    heap[0] =heap[count-1];
+	    heap[count-1]=0;
+	    count--;
+		if(count>1)
+			siftDown(0);
+		return minElemment; 
+	}
+	
+	private void siftDown(int currentPosition){
+		int targetPosition=-1;	
+		int leftChild =getLeftChild(currentPosition);
+		int rightChild=getRightChild(currentPosition);
+		
+		System.out.println("-->"+leftChild+" "+rightChild);
+		
+		if( leftChild!=-1 && rightChild!=-1) {
+			if(heap[leftChild] < heap[rightChild])
+				targetPosition=leftChild;
+			else
+				targetPosition=rightChild;
+		}
+		else if(leftChild==-1)  
+			targetPosition=rightChild;	 
+		else
+			targetPosition=leftChild;		
+		if(targetPosition==-1)
+			return;
+		
+		System.out.println("-->targetPosition "+targetPosition);
+		if( heap[currentPosition] > heap[targetPosition]){  		
+			swap(currentPosition,targetPosition); 
+			siftDown(targetPosition);
+		}
+	}
+	
 	public static void main(String args[]) {
 		MinHeap minHeap= new MinHeap(40);
 		 	minHeap.insert(5); 
@@ -165,10 +170,17 @@ public class MinHeap{
 	        minHeap.insert(22); 
 	        minHeap.insert(9); 
 	        
-	        minHeap.getMinHeap(); 
-	  
-	        minHeap.print(); 
 	        System.out.println("The Min val is " + minHeap.remove()); 
+	        
+	        minHeap.print();  
+	        minHeap.printHeap();
+	        
+	        /**  PARENT : 3 LEFT CHILD : 5  RIGHT CHILD :6
+				 PARENT : 5 LEFT CHILD : 9  RIGHT CHILD :84
+				 PARENT : 6 LEFT CHILD : 19 RIGHT CHILD :17
+				 PARENT : 9 LEFT CHILD : 22 RIGHT CHILD :10
+	         */
+	        
 		
 	}
 	
