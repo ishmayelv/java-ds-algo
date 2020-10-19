@@ -22,8 +22,7 @@ public class QueueUnitTest {
 		
 		assertEquals("2", queue.dequeue());
 		assertEquals("3", queue.peek());
-			
-		 
+			 
 		
     }
 }

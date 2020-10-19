@@ -135,10 +135,8 @@ public class MinHeap{
 		int targetPosition=-1;	
 		int leftChild =getLeftChild(currentPosition);
 		int rightChild=getRightChild(currentPosition);
-		
-		System.out.println("-->"+leftChild+" "+rightChild);
-		
-		if( leftChild!=-1 && rightChild!=-1) {
+	
+		if(leftChild!=-1 && rightChild!=-1) {
 			if(heap[leftChild] < heap[rightChild])
 				targetPosition=leftChild;
 			else
@@ -151,7 +149,6 @@ public class MinHeap{
 		if(targetPosition==-1)
 			return;
 		
-		System.out.println("-->targetPosition "+targetPosition);
 		if( heap[currentPosition] > heap[targetPosition]){  		
 			swap(currentPosition,targetPosition); 
 			siftDown(targetPosition);
@@ -170,11 +167,9 @@ public class MinHeap{
 	        minHeap.insert(22); 
 	        minHeap.insert(9); 
 	        
-	        System.out.println("The Min val is " + minHeap.remove()); 
-	        
+	        System.out.println("The Min val is " + minHeap.remove()); 	        
 	        minHeap.print();  
 	        minHeap.printHeap();
-	        
 	        /**  PARENT : 3 LEFT CHILD : 5  RIGHT CHILD :6
 				 PARENT : 5 LEFT CHILD : 9  RIGHT CHILD :84
 				 PARENT : 6 LEFT CHILD : 19 RIGHT CHILD :17
