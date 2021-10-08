@@ -1,4 +1,4 @@
-package com.ruthtech.buildDS;
+package com.ruthtech.ds;
 
 
 public class MyLinkedList {

@@ -3,7 +3,7 @@ package com.ruthtech.ds.test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
-import com.ruthtech.ds.Queue;
+import com.ruthtech.queues.Queue;
 
 public class QueueUnitTest {
 	

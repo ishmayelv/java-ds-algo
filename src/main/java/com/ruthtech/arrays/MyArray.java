@@ -1,4 +1,4 @@
-package com.ruthtech.buildDS;
+package com.ruthtech.arrays;
 
 public class MyArray {
 

@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import com.ruthtech.ds.MinStackProblem;
+import com.ruthtech.stack.MinStackProblem;
 
 public class FindMinStackTest {
 	

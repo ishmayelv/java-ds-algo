@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import com.ruthtech.ds.Stack;
+import com.ruthtech.stack.Stack;
 
 public class StackUnitTest {
 	

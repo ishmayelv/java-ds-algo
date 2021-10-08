@@ -1,4 +1,4 @@
-package com.ruthtech.ds;
+package com.ruthtech.hashtable;
 
 import java.util.ArrayList;
 

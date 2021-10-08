@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.ruthtech.arrayproblems.MyList;
+import com.ruthtech.arrays.MyList;
 
 public class MyListTest {
 

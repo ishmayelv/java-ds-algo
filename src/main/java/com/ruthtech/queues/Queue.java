@@ -1,4 +1,4 @@
-package com.ruthtech.ds;
+package com.ruthtech.queues;
 
 import com.ruthtech.ds.exception.QueueOverFlowException;
 import com.ruthtech.ds.exception.QueueUnderFlowException;

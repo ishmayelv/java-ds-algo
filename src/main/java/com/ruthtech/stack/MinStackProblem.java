@@ -1,4 +1,4 @@
-package com.ruthtech.ds;
+package com.ruthtech.stack;
 
 import com.ruthtech.ds.exception.StackOverFlowException;
 

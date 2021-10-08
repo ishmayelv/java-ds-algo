@@ -1,67 +1,81 @@
 package com.ruthtech.stack;
 
-public class Stack{
-	Node top;
-	Node bottom;	
-	int length;
+import com.ruthtech.ds.exception.StackOverFlowException;
+import com.ruthtech.ds.exception.StackUnderFlowException;
+
+/**
+ * Applications :
+ * 1. Reverse a word
+ * 2. Undo operations (Ctrl + Z)
+ * 3. Language processing
+ * 4. Stack of plates/books
+ * 5. Wearing/Removing bangles
+ * 6. Recursion, Method calls
+ * 7. Back button on browser,
+ * 8. Match parenthesis in an expression
+ */
+public class Stack<E>{
+	Node<E> top;	
+	int size;
+	int MAX_SIZE=100;
 	
-	private void push(String nodeVal){
-		 Node node=new Node(nodeVal);
-		 if(top == null) { 
-			 top =node;
-			 bottom =node;
-		 }
+	public void push(E nodeVal)throws StackOverFlowException
+	{
+		 if (size==MAX_SIZE)
+			 throw new StackOverFlowException("Stack is full");
+		 Node<E> node=new Node<E>(nodeVal);
+		 if(top == null)	
+			 top =node;		
 		 else{			
 			 node.next= top;
 			 top=node;		
-			 length++;
+			 size++;
 		 }
-		 length++;
+		 size++;
 	}
-	private String peek() {
+	public E peek()throws StackUnderFlowException {
+		if(size==0)
+			throw new StackUnderFlowException("Stack is empty");
 		return top.nodeVal;
 	}
 	
-	private String pop(){
-		String str="";
-		 if(top == null) 
-			 return str;
-		 else{
-			 str=top.nodeVal;
-			 top=top.next;
-			 length--;			 
-		 }
-		 return str;
+	public E pop()throws StackUnderFlowException{
+		if(size==0)
+			throw new StackUnderFlowException("Stack is empty");		
+		E str=top.nodeVal;
+		top=top.next;
+		size--;			 
+		return str;
 	}
 	
-	private void printLinkedList() {
+	public boolean isEmpty(){
+		if(size==0)
+			return true;	
+		else
+			return false;
+	} 
+	
+	private void printStackElements() {
 		Node temp =top;
 		while(temp!=null){
 		  System.out.print(" "+temp.nodeVal);
 		  temp=temp.next;
 		}
-	}
+	} 
 	
-	class Node{
-		String nodeVal;		
-		Node next;		
-		Node(String nodeVal ){
+	private class Node<E> {
+		E nodeVal;		
+		Node<E> next;		
+		Node(E nodeVal ){
 			this.nodeVal =nodeVal;
 			this.next=null;
 		}		
+	} 
+	
+	
+	public void findMinimum() {
+		
 	}
 	
-	public static void main(String[] args) {
-		Stack ll =new Stack();  		
-		ll.push("1");
-		ll.push("2");
-		ll.push("3");	
-		
-		System.out.println(ll.pop());
-		System.out.println(ll.peek());
-		System.out.println(ll.pop());
-		System.out.println(ll.pop());
-		System.out.println(ll.pop()); 
-	}
 	
 }

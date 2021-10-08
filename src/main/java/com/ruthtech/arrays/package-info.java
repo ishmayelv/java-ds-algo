@@ -1,4 +1,4 @@
-package com.ruthtech.arrayproblems;
+package com.ruthtech.arrays;
 
 /**
 1. Two Sum
