@@ -1,4 +1,4 @@
-package com.ruthtech.ds.trees;
+package com.ruthtech.trees;
 
 import java.util.ArrayList;
 

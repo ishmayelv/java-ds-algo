@@ -1,6 +1,6 @@
 package com.ruthtech.stack;
 
-import com.ruthtech.ds.exception.StackOverFlowException;
+import com.ruthtech.exception.StackOverFlowException;
 
 /**
  * Build a min stack with T.C O(1) ; space is not a constraint

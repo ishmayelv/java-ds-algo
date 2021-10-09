@@ -1,6 +1,6 @@
-package com.ruthtech.ds.heap;
+package com.ruthtech.heap;
 
-import com.ruthtech.ds.exception.HeapUnderFlowException;
+import com.ruthtech.exception.HeapUnderFlowException;
 
 /**
  * 
@@ -17,7 +17,7 @@ import com.ruthtech.ds.exception.HeapUnderFlowException;
  * T.C - remove : O(log n)
  * 
  */
-public class MinHeap{	
+public class MaxHeap{	
 	
 	/**
 	 * insert(): Inserting a new key takes O(Log n) time. 
@@ -28,21 +28,46 @@ public class MinHeap{
 	int MAX_HEAP =0;
 	int count =0;
 	
-	private MinHeap(int size) {
+	private MaxHeap(int size) {
 		this.MAX_HEAP=size;
 		heap=new int[size];
-	}
-	
-	 
+	}		 
 	private void siftup(int current) {
 		int parent = getParent(current);
 		if(parent==-1) return;
-		if( heap[current] < heap[parent]) {
+		if( heap[current] > heap[parent]) {
 			swap(current,parent);
 			siftup(parent);
 		}	 
 	}
 	
+	private void siftDown(int currentPosition ) {
+		int targetPosition=-1;	 
+		int leftChild =getLeftChild(currentPosition);
+		int rightChild =getRightChild(currentPosition);
+		
+		if( leftChild!=-1 && rightChild!=-1) {
+			if(heap[leftChild] > heap[rightChild])
+				targetPosition=leftChild;
+			else
+				targetPosition=rightChild;
+		}
+		else if(leftChild==-1)  
+			targetPosition=rightChild;	 
+		else
+			targetPosition=leftChild;
+		
+		if(targetPosition==-1)
+			return;
+		
+		
+		if( heap[currentPosition] < heap[targetPosition]){  		
+			swap(currentPosition,targetPosition); 
+			siftDown(targetPosition);
+		}
+		
+		
+	}
 	
 	private void swap(int sourcePos, int targetPos) {
 		if(sourcePos==-1 || targetPos==-1 || targetPos>=MAX_HEAP || sourcePos>=MAX_HEAP)
@@ -56,9 +81,23 @@ public class MinHeap{
 	  if(count>0)
 		  return heap[0];
 	  else
-		  return -1;	  
+		  return -1;
+	  
 	}
-
+	public int remove() {
+		int minElemment=-1;		
+		if(count<1)
+			throw new HeapUnderFlowException("");
+		
+		minElemment=heap[0];
+	    heap[0]=heap[count-1];
+	    heap[count-1]=0;
+	    count--;
+		if(count>1) {
+			siftDown(0);
+		} 
+		return minElemment; 
+	}
 	
 	/**
 	 * Find the elements right position: shit down/shiftup
@@ -74,13 +113,14 @@ public class MinHeap{
 	}
 	
 	
-	/*
+	/**
 	 * Get the left child of parent at position passed
 	 */
 	private int getLeftChild(int position) {
 		int leftChild = (2*position)+1 ;
 		if (leftChild>=count)
-			return -1;					
+			return -1;
+					
 		return leftChild ;
 	}
 	
@@ -111,52 +151,9 @@ public class MinHeap{
 	          System.out.println();
 	     } 		 
 	}
-	private void printHeap(){
-		 for(int ele:heap)
-	          System.out.print(ele+" "); 
-		 System.out.println();
-	}
-	
-	public int remove() {
-		int minElemment=-1;		
-		if(count<1)
-			throw new HeapUnderFlowException("");
-		
-		minElemment=heap[0];
-	    heap[0] =heap[count-1];
-	    heap[count-1]=0;
-	    count--;
-		if(count>1)
-			siftDown(0);
-		return minElemment; 
-	}
-	
-	private void siftDown(int currentPosition){
-		int targetPosition=-1;	
-		int leftChild =getLeftChild(currentPosition);
-		int rightChild=getRightChild(currentPosition);
-	
-		if(leftChild!=-1 && rightChild!=-1) {
-			if(heap[leftChild] < heap[rightChild])
-				targetPosition=leftChild;
-			else
-				targetPosition=rightChild;
-		}
-		else if(leftChild==-1)  
-			targetPosition=rightChild;	 
-		else
-			targetPosition=leftChild;		
-		if(targetPosition==-1)
-			return;
-		
-		if( heap[currentPosition] > heap[targetPosition]){  		
-			swap(currentPosition,targetPosition); 
-			siftDown(targetPosition);
-		}
-	}
 	
 	public static void main(String args[]) {
-		MinHeap minHeap= new MinHeap(40);
+		MaxHeap minHeap= new MaxHeap(40);
 		 	minHeap.insert(5); 
 	        minHeap.insert(3); 
 	        minHeap.insert(17); 
@@ -165,18 +162,12 @@ public class MinHeap{
 	        minHeap.insert(19); 
 	        minHeap.insert(6); 
 	        minHeap.insert(22); 
-	        minHeap.insert(9); 
+	        minHeap.insert(9); 	 
 	        
-	        System.out.println("The Min val is " + minHeap.remove()); 	        
 	        minHeap.print();  
-	        minHeap.printHeap();
-	        /**  PARENT : 3 LEFT CHILD : 5  RIGHT CHILD :6
-				 PARENT : 5 LEFT CHILD : 9  RIGHT CHILD :84
-				 PARENT : 6 LEFT CHILD : 19 RIGHT CHILD :17
-				 PARENT : 9 LEFT CHILD : 22 RIGHT CHILD :10
-	         */
-	        
-		
+	        System.out.println("<===============================>" + minHeap.remove()); 
+	        minHeap.print();  
 	}
+	
 	
 }

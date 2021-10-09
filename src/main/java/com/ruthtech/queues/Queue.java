@@ -1,7 +1,7 @@
 package com.ruthtech.queues;
 
-import com.ruthtech.ds.exception.QueueOverFlowException;
-import com.ruthtech.ds.exception.QueueUnderFlowException;
+import com.ruthtech.exception.QueueOverFlowException;
+import com.ruthtech.exception.QueueUnderFlowException;
 
 /**
  * 

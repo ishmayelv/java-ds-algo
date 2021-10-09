@@ -1,7 +1,7 @@
 package com.ruthtech.stack;
 
-import com.ruthtech.ds.exception.StackOverFlowException;
-import com.ruthtech.ds.exception.StackUnderFlowException;
+import com.ruthtech.exception.StackOverFlowException;
+import com.ruthtech.exception.StackUnderFlowException;
 
 /**
  * Applications :

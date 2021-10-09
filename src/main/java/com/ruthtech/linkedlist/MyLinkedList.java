@@ -1,45 +1,47 @@
-package com.ruthtech.ds;
+package com.ruthtech.linkedlist;
 
 
-public class MyLinkedList {
-	class Node{
-		int data;
-		Node next;		
-		public Node(int data){
-			this.data=data;
-		} 
-	}
-	
-	Node head=null;
-	Node tail=null;
+public class MyLinkedList<E> {
+		
+	Node<E> head=null;
+	Node<E> tail=null;
 	int length;
 	
-	public void addNode(int val){
-		if(head==null){
-			Node node = new Node(val);
-			head = node;
-			tail = node;
-		}else{
-			tail.next = new Node(val);
+	/*MyLinkedList(E ele){
+		Node<E> node = new Node<E>(ele);
+		this.head = node;
+		this.tail = node;
+		this.length++;
+	}*/
+	
+	public void addNode(E val){
+		if(head==null) {
+			Node<E> node = new Node<E>(val);
+			this.head = node;
+			this.tail = node; 
+		}
+		else {
+			tail.next = new Node<E>(val);
 			tail = tail.next;
 		}
 		this.length++;
 	}
+	
 	public int getLength() {
 		return this.length;
 	}
 	
 	public void printLinkedList(){
 		System.out.println();
-		Node temp = head;
+		Node<E> temp = head;
 		while(temp!=null){
 			System.out.print(temp.data+"->");
 			temp = temp.next;
 		}		
 	}
 	
-	public void addNodeAtStart(int val){		 
-		Node newNode = new Node(val);
+	public void addNodeAtStart(E val){		 
+		Node<E> newNode = new Node<E>(val);
 		newNode.next=head;		
 		head =newNode;		 
 		this.length++;
@@ -47,7 +49,7 @@ public class MyLinkedList {
 	
 	//It always removes last node
 	public void removeNode(){
-		Node curNode = head;
+		Node<E> curNode = head;
 		while(curNode.next!=null && curNode.next.next!=null ){			
 			curNode = curNode.next;
 		}	
@@ -69,7 +71,8 @@ public class MyLinkedList {
 	 */
 	public static void main(String[] args) {
 		
-		MyLinkedList listImpl =new  MyLinkedList();
+		MyLinkedList<Integer> listImpl =new  MyLinkedList<Integer>();
+		
 		listImpl.addNode(10);
 		listImpl.addNode(20);
 		listImpl.addNode(30);
@@ -86,6 +89,13 @@ public class MyLinkedList {
 	} 
     
 	
+	private class Node<T>{
+		T data;
+		Node<E> next;		
+		public Node(T data){
+			this.data=data;
+		} 
+	}
 	
 	
 	

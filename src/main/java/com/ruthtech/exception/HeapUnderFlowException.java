@@ -1,4 +1,4 @@
-package com.ruthtech.ds.exception;
+package com.ruthtech.exception;
 
 public class HeapUnderFlowException  extends RuntimeException {
     public HeapUnderFlowException(String errorMessage ) {

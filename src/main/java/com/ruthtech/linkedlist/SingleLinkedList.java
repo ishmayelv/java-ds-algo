@@ -1,19 +1,20 @@
-package com.ruthtech.ds;
+package com.ruthtech.linkedlist;
 
  
-public class DoubleLinkedList {
-	Node head;
-	Node tail;
+public class SingleLinkedList {
 
+	
+	Node head;
+	Node tail;	
 	int length;
 	
 	private void addNode(String nodeVal){
-		 Node node=new Node(nodeVal,tail);
+		 Node node=new Node(nodeVal);
 		 if(head == null) { 
 			 head =node;
-			 tail =node;			
+			 tail =node;
 		 }
-		 else{	
+		 else{			
 			  tail.next=node;
 			  tail=tail.next;
 		 }
@@ -23,14 +24,11 @@ public class DoubleLinkedList {
 	private void addNodeAtFirst(String nodeVal) {		
 		 Node node=new Node(nodeVal);		 
 		 node.next= head;
-		 head.previous=node;
-				 
-		 head=node;
-		 
+		 head=node;		
 		 length++;
 	}
 	private void addNodeAtLast(String nodeVal) {		
-		 Node node=new Node(nodeVal,tail);		 
+		 Node node=new Node(nodeVal);		 
 		 tail.next=node;
 		 tail=tail.next;	
 		 length++;
@@ -43,17 +41,9 @@ public class DoubleLinkedList {
 		  System.out.print(" "+temp.nodeVal);
 		  temp=temp.next;
 		}
-	}
+		
 	
-	private void printDLReverse() {
-		Node temp =tail;
-		while(temp!=null)
-		{
-		  System.out.print(" "+temp.nodeVal);
-		  temp=temp.previous;
-		}
 	}
-	
 	private void printLLLength() {
 		System.out.println();
 		System.out.println("Linked List Length:"+length);
@@ -63,22 +53,15 @@ public class DoubleLinkedList {
 	
 	class Node{
 		String nodeVal;		
-		Node next;	
-		Node previous;
+		Node next;		
 		Node(String nodeVal ){
-			this.nodeVal=nodeVal;
-			this.next	=null;
-			this.previous=null;
-		}	
-		Node(String nodeVal,Node node ){
-			this.nodeVal=nodeVal;
-			this.previous=node;
-			this.next	=null;
-		}	
+			this.nodeVal =nodeVal;
+			this.next=null;
+		}		
 	}
 	
 	public static void main(String[] args) {
-		DoubleLinkedList ll =new DoubleLinkedList();  		
+		SingleLinkedList ll =new SingleLinkedList();  		
 		ll.addNode("1");
 		ll.addNode("2");
 		ll.addNode("3");	
@@ -87,8 +70,7 @@ public class DoubleLinkedList {
 		ll.printLinkedList();
 		 
 		ll.printLLLength();
-		System.out.println("Before calling DL print ");
-		ll.printDLReverse();
+		 
 	}
 	
 }

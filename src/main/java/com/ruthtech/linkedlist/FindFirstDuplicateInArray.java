@@ -1,4 +1,4 @@
-package com.ruthtech.ds;
+package com.ruthtech.linkedlist;
 import java.util.Hashtable;
 
 public class FindFirstDuplicateInArray {

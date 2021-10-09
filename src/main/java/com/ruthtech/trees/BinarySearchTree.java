@@ -1,4 +1,4 @@
-package com.ruthtech.ds.trees;
+package com.ruthtech.trees;
 public class BinarySearchTree{	
 	class Node{
 		int nodeValue;		

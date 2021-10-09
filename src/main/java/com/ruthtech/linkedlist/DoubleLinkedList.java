@@ -1,20 +1,19 @@
-package com.ruthtech.ds;
+package com.ruthtech.linkedlist;
 
  
-public class SingleLinkedList {
-
-	
+public class DoubleLinkedList {
 	Node head;
-	Node tail;	
+	Node tail;
+
 	int length;
 	
 	private void addNode(String nodeVal){
-		 Node node=new Node(nodeVal);
+		 Node node=new Node(nodeVal,tail);
 		 if(head == null) { 
 			 head =node;
-			 tail =node;
+			 tail =node;			
 		 }
-		 else{			
+		 else{	
 			  tail.next=node;
 			  tail=tail.next;
 		 }
@@ -24,11 +23,14 @@ public class SingleLinkedList {
 	private void addNodeAtFirst(String nodeVal) {		
 		 Node node=new Node(nodeVal);		 
 		 node.next= head;
-		 head=node;		
+		 head.previous=node;
+				 
+		 head=node;
+		 
 		 length++;
 	}
 	private void addNodeAtLast(String nodeVal) {		
-		 Node node=new Node(nodeVal);		 
+		 Node node=new Node(nodeVal,tail);		 
 		 tail.next=node;
 		 tail=tail.next;	
 		 length++;
@@ -41,9 +43,17 @@ public class SingleLinkedList {
 		  System.out.print(" "+temp.nodeVal);
 		  temp=temp.next;
 		}
-		
-	
 	}
+	
+	private void printDLReverse() {
+		Node temp =tail;
+		while(temp!=null)
+		{
+		  System.out.print(" "+temp.nodeVal);
+		  temp=temp.previous;
+		}
+	}
+	
 	private void printLLLength() {
 		System.out.println();
 		System.out.println("Linked List Length:"+length);
@@ -53,15 +63,22 @@ public class SingleLinkedList {
 	
 	class Node{
 		String nodeVal;		
-		Node next;		
+		Node next;	
+		Node previous;
 		Node(String nodeVal ){
-			this.nodeVal =nodeVal;
-			this.next=null;
-		}		
+			this.nodeVal=nodeVal;
+			this.next	=null;
+			this.previous=null;
+		}	
+		Node(String nodeVal,Node node ){
+			this.nodeVal=nodeVal;
+			this.previous=node;
+			this.next	=null;
+		}	
 	}
 	
 	public static void main(String[] args) {
-		SingleLinkedList ll =new SingleLinkedList();  		
+		DoubleLinkedList ll =new DoubleLinkedList();  		
 		ll.addNode("1");
 		ll.addNode("2");
 		ll.addNode("3");	
@@ -70,7 +87,8 @@ public class SingleLinkedList {
 		ll.printLinkedList();
 		 
 		ll.printLLLength();
-		 
+		System.out.println("Before calling DL print ");
+		ll.printDLReverse();
 	}
 	
 }

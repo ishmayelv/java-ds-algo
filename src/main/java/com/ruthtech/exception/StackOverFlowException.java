@@ -1,4 +1,4 @@
-package com.ruthtech.ds.exception;
+package com.ruthtech.exception;
 
 public class StackOverFlowException  extends RuntimeException {
     public StackOverFlowException(String errorMessage) {
